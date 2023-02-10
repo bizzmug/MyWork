@@ -1,0 +1,15 @@
+set CUDA_VISIBLE_DEVICES=0
+
+dann跑Digits：
+python dann.py data/Digits -d Digits -s MNIST -t USPS -a resnet18 --epochs 20 --seed 1 --log logs/dann/Digits_M2U
+dann跑Office31：
+python dann.py data/office31 -d Office31 -s A -t W -a resnet50 --epochs 20 --seed 1 --log logs/dann/Office31_A2W -b 16
+
+dann_nwd跑Digits：
+python dann_nwd.py data/Digits -d Digits -s MNIST -t USPS -a resnet18 --epochs 20 --seed 1 --log logs/dann_nwd/Digits_M2U
+
+daln跑Office31：
+python daln_model.py data/office31 -d Office31 -s A -t W -a resnet50 --epochs 20 --seed 1 --log logs/daln/Office31_A2W -b 16
+
+adda_daln跑Office31（免预训练）：
+python adda_daln.py data/office31 -d Office31 -s A -t W -a resnet50 --epochs 20 --seed 1 --log logs/daln_adda/Office31_A2W -b 16 --pretrain logs/daln_adda/Office31_A2W/checkpoints/pretrain.pth
