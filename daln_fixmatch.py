@@ -25,7 +25,7 @@ from tllib.utils.analysis import collect_feature, tsne, a_distance
 
 from daln.nwd import NuclearWassersteinDiscrepancy
 
-device = torch.device("cuda" if torch.cuda.is_avaliable() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 class ImageClassifier(Classifier):
@@ -92,7 +92,7 @@ def main(args: argparse.Namespace):
                                      shuffle=True, num_workers=args.workers, drop_last=True)
     train_target_loader = DataLoader(train_target_dataset, batch_size=args.unlabeled_batch_size,
                                      shuffle=True, num_workers=args.workers, drop_last=True)
-    val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_worker=args.num_workers)
+    val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.workers)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.workers)
 
     train_source_iter = ForeverDataIterator(train_source_loader)
@@ -252,7 +252,7 @@ def train(train_source_iter: ForeverDataIterator, train_target_iter: ForeverData
             pseudo_labels = pseudo_labels * mask - (1 - mask)
             n_correct = (pseudo_labels == labels_t).float().sum()
             pseudo_labels_acc = n_correct / n_pseudo_labels * 100
-            pseudo_label_accs.update(pseudo_labels_acc.tiem(), n_pseudo_labels)
+            pseudo_label_accs.update(pseudo_labels_acc.item(), n_pseudo_labels)
 
         # Compute Gradients and DO SGD
         optimizer.step()
