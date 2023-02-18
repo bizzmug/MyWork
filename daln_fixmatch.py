@@ -303,8 +303,10 @@ if __name__ == '__main__':
     parser.add_argument('--no-pool', action='store_true',
                         help='no pool layer after the feature extractor.')
     parser.add_argument('--scratch', action='store_true', help='whether train from scratch.')
-    parser.add_argument('--trade-off', default=1., type=float,
-                        help='the trade-off hyper-parameter for transfer loss')
+    parser.add_argument('--trade-off-disc', default=1., type=float,
+                        help='the trade-off hyper-parameter for discrepancy loss')
+    parser.add_argument('--trade-off-self', default=1., type=float,
+                        help='the trade-off hyper-parameter for self-training loss')
     # training parameters
     parser.add_argument('-b', '--batch-size', default=32, type=int,
                         metavar='N',
