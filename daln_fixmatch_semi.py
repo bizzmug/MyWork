@@ -313,7 +313,7 @@ if __name__ == '__main__':
                         default=(0.229, 0.224, 0.225), help='normalization std')
     parser.add_argument('--auto-augment', default='rand-m10-n2-mstd2', type=str,
                         help='AutoAugment policy (default: rand-m10-n2-mstd2)')
-    parser.add_argument('--shota', default=1, type=int,
+    parser.add_argument('--shots', default=1, type=int,
                         help='Shots for labeled target data, 1 or 3')
     # model parameters
     parser.add_argument('-a', '--arch', metavar='ARCH', default='resnet18',
