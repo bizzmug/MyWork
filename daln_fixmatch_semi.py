@@ -86,7 +86,7 @@ def main(args: argparse.Namespace):
     print("val_transform: ", val_transform)
 
     train_source_dataset, train_labeled_target_dataset, train_unlabeled_target_dataset, val_dataset, test_dataset, \
-    num_classes, class_names = utils.get_semi_dataset(args.data, args.root, args.source, args.target, args.shots,
+    num_classes, args.class_names = utils.get_semi_dataset(args.data, args.root, args.source, args.target, args.shots,
                                                       train_source_transform, val_transform,
                                                       train_target_transform=train_target_transform)
 
